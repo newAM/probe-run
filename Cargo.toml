@@ -10,6 +10,10 @@ readme = "README.md"
 repository = "https://github.com/knurling-rs/probe-run"
 version = "0.2.5"
 
+[patch.crates-io.probe-rs]
+git = "https://github.com/newAM/probe-rs.git"
+rev = "862c584520519b57336ae159d8704a76fcd76d7d"
+
 [dependencies]
 addr2line = "0.15"
 ansi_term = "0.12"
@@ -20,7 +24,7 @@ difference = "2.0"
 either = "1.6"
 gimli = "0.24"
 git-version = "0.3"
-hidapi = "1.2"
+hidapi = { version = "1.2", default-features = false, features = ["linux-static-hidraw"] }
 log = "0.4"
 object = "0.24"
 probe-rs = "0.11"
