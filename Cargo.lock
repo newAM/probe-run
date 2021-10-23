@@ -481,9 +481,9 @@ dependencies = [
 
 [[package]]
 name = "memchr"
-version = "2.4.0"
+version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b16bd47d9e329435e309c58469fe0791c2d0d1ba96ec0954152a5ae2b04387dc"
+checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
 
 [[package]]
 name = "miniz_oxide"
@@ -521,9 +521,9 @@ dependencies = [
 
 [[package]]
 name = "object"
-version = "0.26.0"
+version = "0.27.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c55827317fb4c08822499848a14237d2874d6f139828893017237e7ab93eb386"
+checksum = "67ac1d3f9a1d3616fd9a60c8d74296f22406a238b6a72f5cc1e6f314df4ffbf9"
 dependencies = [
  "memchr",
 ]
@@ -583,7 +583,7 @@ dependencies = [
 [[package]]
 name = "probe-rs"
 version = "0.11.0"
-source = "git+https://github.com/newAM/probe-rs.git?rev=862c584520519b57336ae159d8704a76fcd76d7d#862c584520519b57336ae159d8704a76fcd76d7d"
+source = "git+https://github.com/probe-rs/probe-rs.git?rev=aa1d8b157abc0e5e3082a7c34e0f82195833f7aa#aa1d8b157abc0e5e3082a7c34e0f82195833f7aa"
 dependencies = [
  "anyhow",
  "base64",
@@ -598,7 +598,7 @@ dependencies = [
  "jep106",
  "log",
  "num-traits",
- "object 0.26.0",
+ "object 0.27.1",
  "once_cell",
  "probe-rs-target",
  "rusb",
@@ -626,7 +626,7 @@ dependencies = [
 [[package]]
 name = "probe-rs-target"
 version = "0.11.0"
-source = "git+https://github.com/newAM/probe-rs.git?rev=862c584520519b57336ae159d8704a76fcd76d7d#862c584520519b57336ae159d8704a76fcd76d7d"
+source = "git+https://github.com/probe-rs/probe-rs.git?rev=aa1d8b157abc0e5e3082a7c34e0f82195833f7aa#aa1d8b157abc0e5e3082a7c34e0f82195833f7aa"
 dependencies = [
  "base64",
  "jep106",
@@ -906,9 +906,9 @@ dependencies = [
 
 [[package]]
 name = "svg"
-version = "0.9.3"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a1206d132b55a9c93e12b7e6f9044a27b563a8dea3a39d9bc1764d613a7dd3fa"
+checksum = "e72d8b19ab05827afefcca66bf47040c1e66a0901eb814784c77d4ec118bd309"
 
 [[package]]
 name = "syn"

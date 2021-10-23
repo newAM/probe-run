@@ -11,8 +11,8 @@ repository = "https://github.com/knurling-rs/probe-run"
 version = "0.2.5"
 
 [patch.crates-io.probe-rs]
-git = "https://github.com/newAM/probe-rs.git"
-rev = "862c584520519b57336ae159d8704a76fcd76d7d"
+git = "https://github.com/probe-rs/probe-rs.git"
+rev = "aa1d8b157abc0e5e3082a7c34e0f82195833f7aa"
 
 [dependencies]
 addr2line = "0.15"
