@@ -3,10 +3,15 @@ source: tests/test.rs
 expression: run_result.output
 
 ---
-(HOST) INFO  flashing program (6.57 KiB)
+(HOST) INFO  flashing program (6.51 KiB)
 (HOST) INFO  success!
 ────────────────────────────────────────────────────────────────────────────────
-INFO  Hello, world!
 ────────────────────────────────────────────────────────────────────────────────
-(HOST) INFO  device halted without error
+stack backtrace:
+   0: main
+   1: ResetTrampoline
+        at [cortex-m-rt-0.6.14]/src/lib.rs:547:26
+   2: Reset
+        at [cortex-m-rt-0.6.14]/src/lib.rs:550:13
+(HOST) INFO  device halted by user
 

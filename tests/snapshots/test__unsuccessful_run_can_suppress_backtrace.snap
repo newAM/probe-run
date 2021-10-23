@@ -6,7 +6,7 @@ expression: run_result.output
 (HOST) INFO  flashing program (6.57 KiB)
 (HOST) INFO  success!
 ────────────────────────────────────────────────────────────────────────────────
-INFO  Hello, world!
+ERROR panicked at 'explicit panic'
 ────────────────────────────────────────────────────────────────────────────────
-(HOST) INFO  device halted without error
+(HOST) ERROR the program panicked
 

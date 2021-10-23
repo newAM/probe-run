@@ -1,17 +1,10 @@
-### User Survey
-
-> We love feedback! Please give us < 5 minutes of your time so we can get to know our users better.
-> 
-> Help us shape knurling by filling out [this short survey](https://forms.office.com/r/aMfHG79N9K).
-
 # `probe-run`
 
 > Runs embedded programs just like native ones
 
-`probe-run` is a custom Cargo runner that transparently runs Rust firmware on a
-remote device.
+`probe-run` is a custom Cargo runner that transparently runs Rust firmware on an embedded device.
 
-`probe-run` is powered by [`probe-rs`] and thus supports as many devices and probes as
+`probe-run` is powered by [`probe-rs`] and thus supports all the devices and probes supported by
 `probe-rs` does.
 
 [`probe-rs`]: https://probe.rs/
@@ -192,27 +185,70 @@ $ echo $?
 
 ⚠️ **NOTE** when you run your application with `probe-run`, the `HardFault` handler (default or user-defined) will *NOT* be executed.
 
-### Forcing backtraces
+### Backtrace options
+#### --backtrace
 
-If you'd like to see a backtrace at the end of successful program runs as well, you can enable this by setting the `--force-backtrace` flag:
+The `--backtrace` flag is optional and can get passed the following values:
+
+* `--backtrace=always`   - forced backtrace (if you'd like to see a backtrace at the end of successful program run)
+* `--backtrace=never`    - suppresed backtrace
+* `--backtrace=auto`     - default, shows a backtrace if the program panics or the stack overflows
+
+Run it like this (example for a forced backtrace):
 
 ``` console
-$ cargo run --bin hello --force-backtrace
+$ cargo run --bin hello --backtrace=always
 ```
+
+#### --backtrace-limit
+
+The `--backtrace-limit` flag is optional and defaults to 50. It is possible to set any number.
+
+`--backtrace-limit=0` is accepted and means "no limit".
+
+To show a shortened backtrace showing 5 frames, run:
+
+``` console
+$ cargo run --bin panic --backtrace-limit=5
+```
+
+Note: if `--backtrace=never` is set, setting `--backtrace-limit` has no effect.
 
 ## Troubleshooting
 
-### `probe-run --list-probes` says "No devices were found."
+### "Error: no probe was found."
 
-Apart from a faulty connection between your computer and the target device, this could be caused by several things:
+First, check your data cable:
+
+- make sure that it is connected to the right port on your development board
+- make sure that you are using a **data** cable– some cables are built for charging only! When in doubt, try using a different cable.
+
+If this doesn't resolve the issue, try the following:
 
 #### [Linux only] udev rules haven't been set
 
-In order for `probe-run` to find the device you'd like to run your code on, your system needs permission to access the device as a non-root user.
+Check if your device shows up in `lsusb`:
+
+```console
+$ lsusb
+Bus 001 Device 008: ID 1366:1015 SEGGER J-Link
+```
+
+If your device shows up like in the example, skip to the next troubleshooting section
+
+**If it doesn't show up**, you need to give your system permission to access the device as a non-root user so that `probe-run` can find your device.
 
 In order to grant these permissions, you'll need to add a new set of udev rules.
 
 To learn how to do this for the nRF52840 Development Kit, check out the [installation instructions](https://embedded-trainings.ferrous-systems.com/installation.html?highlight=udev#linux-only-usb) in our embedded training materials.
+
+afterwards, your device should show up in `probe-run --list-probes` similar to this:
+
+```console
+$ probe-run --list-probes
+The following devices were found:
+[0]: J-Link (J-Link) (VID: 1366, PID: 1015, Serial: <redacted>, JLink)
+```
 
 #### No external or on-board debugger present
 
@@ -273,7 +309,7 @@ For easier copy-paste-ability, here's an example how to try out your local `prob
 
 ```console
 $ cd probe-run/
-$ PROBE_RUN_IGNORE_VERSION=1 cargo run -- --chip nRF52840_xxAA --max-backtrace-len=10 hello
+$ PROBE_RUN_IGNORE_VERSION=1 cargo run -- --chip nRF52840_xxAA --backtrace-limit=10 hello
   ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ                                   ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ ˆˆˆˆˆ
   environment variables                                        extra flags             binary to be
   (optional)                                                   (optional)              flashed & run

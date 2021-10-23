@@ -15,26 +15,37 @@ git = "https://github.com/probe-rs/probe-rs.git"
 rev = "aa1d8b157abc0e5e3082a7c34e0f82195833f7aa"
 
 [dependencies]
-addr2line = "0.15"
+addr2line = { version = "0.15", default-features = false, features = [
+    "fallible-iterator",
+    "std-object",
+] }
 ansi_term = "0.12"
 anyhow = "1.0"
 colored = "2.0"
-defmt-decoder = { version = "=0.2.2", features = ['unstable'] }
 difference = "2.0"
 either = "1.6"
-gimli = "0.24"
+gimli = { version = "0.24", default-features = false }
 git-version = "0.3"
 hidapi = { version = "1.2", default-features = false, features = ["linux-static-hidraw"] }
 log = "0.4"
-object = "0.24"
+object = { version = "0.24", default-features = false }
 probe-rs = "0.11"
 probe-rs-rtt = "0.11"
 rustc-demangle = "0.1"
 signal-hook = "0.3"
 structopt = "0.3"
 
+[dependencies.defmt-decoder]
+branch = "main"
+features = ['unstable']
+git = "https://github.com/knurling-rs/defmt"
+# version = "0.3.0" # uncomment when defmt-decoder 0.3.0 is released
+
 [dev-dependencies]
+dirs = "4.0"
 insta = "1.7"
 os_pipe = "0.9"
-pretty_assertions = "0.7"
-rstest = "0.10"
+pretty_assertions = "1.0"
+rstest = "0.11"
+nix = "0.23"
+serial_test = "0.5"
