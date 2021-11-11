@@ -36,3 +36,7 @@ pretty_assertions = "1"
 rstest = "0.11"
 nix = "0.23"
 serial_test = "0.5"
+
+[patch.crates-io.probe-rs]
+git = "https://github.com/newAM/probe-rs.git"
+rev = "862c584520519b57336ae159d8704a76fcd76d7d"
